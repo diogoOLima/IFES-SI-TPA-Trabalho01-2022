@@ -28,7 +28,9 @@
 package br.edu.ifes.si.tpa;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Esta classe implementa a representação do dígrafo com lista de adjacências.
@@ -42,6 +44,11 @@ public class Digrafo {
     private final int V;         // número de vértices no dígrafo
     private int A;               // número de arestas no dígrafo
     private List<Aresta>[] adj;  // adj[v1] = lista de adjacência do vértice v1
+    private Map<Integer, Integer> artigoAutor = new HashMap<Integer, Integer>();
+
+    public Map<Integer, Integer> getArtigoAutor() {
+        return artigoAutor;
+    }
     
     /**
      * Inicializa um dígrafo com V vertices e 0 arestas.
@@ -72,8 +79,7 @@ public class Digrafo {
         if (A < 0) throw new IllegalArgumentException("Número de arestas deve ser não negativo");
         
         for(int x = 0; x < this.V; x++){
-            in.readInt();
-            in.readInt();
+            artigoAutor.put(in.readInt(), in.readInt());
         }
         
         for (int i = 0; i < A; i++) {
