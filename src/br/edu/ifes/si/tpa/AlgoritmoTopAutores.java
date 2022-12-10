@@ -18,7 +18,7 @@ public class AlgoritmoTopAutores {
     private int[] qtdArtigoAutor;
     
     public AlgoritmoTopAutores(Digrafo D){
-        qtdArtigoAutor = new int[D.getArtigoAutor().size()];
+        qtdArtigoAutor = new int[D.getQtdAutor()];
         artigoAutor = D.getArtigoAutor();
     }
     
@@ -26,7 +26,8 @@ public class AlgoritmoTopAutores {
         for(int x = 0 ; x < D.V() ; x++){
             for(Aresta a : D.arestas()){
                 if(a.getV2() == x){
-                    qtdArtigoAutor[x]++;
+                    int autorArtigo = artigoAutor.get(a.getV2());
+                    qtdArtigoAutor[autorArtigo]++;
                 }
             }
         }

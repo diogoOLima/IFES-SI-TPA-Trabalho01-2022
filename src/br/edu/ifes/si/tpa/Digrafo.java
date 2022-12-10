@@ -45,11 +45,16 @@ public class Digrafo {
     private int A;               // número de arestas no dígrafo
     private List<Aresta>[] adj;  // adj[v1] = lista de adjacência do vértice v1
     private Map<Integer, Integer> artigoAutor = new HashMap<Integer, Integer>();
+    private Integer qtdAutor = new Integer(0);
 
     public Map<Integer, Integer> getArtigoAutor() {
         return artigoAutor;
     }
     
+    public Integer getQtdAutor() {
+        
+        return qtdAutor;
+    }
     /**
      * Inicializa um dígrafo com V vertices e 0 arestas.
      * @param  V o número de vértices
@@ -81,6 +86,13 @@ public class Digrafo {
         for(int x = 0; x < this.V; x++){
             artigoAutor.put(in.readInt(), in.readInt());
         }
+        
+        for(Integer artigo : artigoAutor.keySet()){
+            if(qtdAutor < artigoAutor.get(artigo)){
+                qtdAutor = artigoAutor.get(artigo);
+            }
+        }
+        qtdAutor++;
         
         for (int i = 0; i < A; i++) {
             int v1 = in.readInt();
