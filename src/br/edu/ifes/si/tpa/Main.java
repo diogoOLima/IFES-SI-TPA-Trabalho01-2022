@@ -14,7 +14,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner ler = new Scanner(System.in);
-        Digrafo D = new Digrafo( new In("./Digrafo1.txt"));
+        In in = new In(args[0]);
+        Digrafo D = new Digrafo(in);
         boolean continuar = false;
         int opcaoMenu;
         do{
