@@ -1,7 +1,5 @@
 package br.edu.ifes.si.tpa;
 
-import java.io.DataInputStream;
-import java.io.File;
 import java.util.Scanner;
 
 public class AlgoritmoTodosCaminhos {

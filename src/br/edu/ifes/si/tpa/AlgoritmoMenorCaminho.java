@@ -34,7 +34,7 @@ import java.util.Scanner;
  * <a href="http://algs4.cs.princeton.edu/42digraph">Section 4.2</a> of
  * <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
  */
-public class AlgoritmoBFSDigrafo {
+public class AlgoritmoMenorCaminho {
 
     private static final int INFINITY = Integer.MAX_VALUE;
     private boolean[] marcado;    // marcado[v1] = existe um caminho do vértice origem vo->v1?
@@ -46,7 +46,7 @@ public class AlgoritmoBFSDigrafo {
      * @param G o dígrafo
      * @param vo o vértice origem
      */
-    public AlgoritmoBFSDigrafo(Digrafo G, int vo) {
+    public AlgoritmoMenorCaminho(Digrafo G, int vo) {
         marcado = new boolean[G.V()];
         distanciaPara = new int[G.V()];
         arestaPara = new int[G.V()];
@@ -117,7 +117,7 @@ public class AlgoritmoBFSDigrafo {
     }
 
     /**
-     * Testa a classe AlgoritmoBFSDigrafo.
+     * Testa a classe AlgoritmoMenorCaminho.
      */
     public static void main(String[] args) {
         Scanner ler = new Scanner(System.in);
@@ -128,7 +128,7 @@ public class AlgoritmoBFSDigrafo {
         origem = ler.nextInt();
         System.out.println("Digite o ID do artigo destino: ");
         destino = ler.nextInt();
-        AlgoritmoBFSDigrafo algoritmoBFS = new AlgoritmoBFSDigrafo(G, origem);
+        AlgoritmoMenorCaminho algoritmoBFS = new AlgoritmoMenorCaminho(G, origem);
 
         if (algoritmoBFS.temCaminhoPara(destino)) {
             System.out.printf("%d para %d (%d):  ", origem, destino, algoritmoBFS.distanciaPara(destino));

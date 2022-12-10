@@ -11,10 +11,10 @@ import java.util.Scanner;
  *
  * @author diogo
  */
-public class Menu {
+public class Main {
     public static void main(String[] args) {
         Scanner ler = new Scanner(System.in);
-        Digrafo G = new Digrafo( new In("./Digrafo1.txt"));
+        Digrafo D = new Digrafo( new In("./Digrafo1.txt"));
         boolean continuar = false;
         int opcaoMenu;
         do{
@@ -25,16 +25,16 @@ public class Menu {
             opcaoMenu = ler.nextInt();
             switch (opcaoMenu){
                 case 1:
-                    menorCaminho(G, ler);
+                    menorCaminho(D, ler);
                     break;
                 case 2:
-                    todosCaminhos(G, ler);
+                    todosCaminhos(D, ler);
                     break;
                 case 3:
-                    citacoesArtigos(G);
+                    citacoesArtigos(D);
                     break;
                 case 4:
-                    autorArtigo(G);
+                    autorArtigo(D);
                     break;
                     
             }
@@ -47,16 +47,16 @@ public class Menu {
         }while(continuar == true);
     }
 
-    private static void menorCaminho(Digrafo G, Scanner ler) {
+    private static void menorCaminho(Digrafo D, Scanner ler) {
         System.out.println("Digite o ID do artigo origem: ");
         int origem = ler.nextInt();
         System.out.println("Digite o ID do artigo destino: ");
         int destino = ler.nextInt();
-        AlgoritmoBFSDigrafo algoritmoBFS = new AlgoritmoBFSDigrafo(G, origem);
+        AlgoritmoMenorCaminho menorCaminho = new AlgoritmoMenorCaminho(D, origem);
 
-        if (algoritmoBFS.temCaminhoPara(destino)) {
-            System.out.printf("%d para %d (%d):  ", origem, destino, algoritmoBFS.distanciaPara(destino));
-            for (int x : algoritmoBFS.caminhoPara(destino)) {
+        if (menorCaminho.temCaminhoPara(destino)) {
+            System.out.printf("%d para %d (%d):  ", origem, destino, menorCaminho.distanciaPara(destino));
+            for (int x : menorCaminho.caminhoPara(destino)) {
                 if (x == origem) {
                     System.out.print(x);
                 } else {
@@ -69,27 +69,27 @@ public class Menu {
         }
     }
 
-    private static void todosCaminhos(Digrafo G, Scanner ler) {
+    private static void todosCaminhos(Digrafo D, Scanner ler) {
         System.out.println("Digite o ID do artigo origem: ");
         int origem = ler.nextInt();
         System.out.println("Digite o ID do artigo destino: ");
         int destino = ler.nextInt();
-        AlgoritmoTodosCaminhos todosCaminhos1 = new AlgoritmoTodosCaminhos(G, origem, destino);
-        System.out.println("# caminhos = " + todosCaminhos1.numeroDeCaminhos());
+        AlgoritmoTodosCaminhos todosCaminhos = new AlgoritmoTodosCaminhos(D, origem, destino);
+        System.out.println("# caminhos = " + todosCaminhos.numeroDeCaminhos());
     }
 
-    private static void citacoesArtigos(Digrafo G) {
-        AlgoritmoTopArtigos topArtigos = new AlgoritmoTopArtigos(G);
-        int[] qtdCitacoesArtigos =  topArtigos.citacoesArtigos(G);
-        for(int x = 0; x < G.V(); x++){
+    private static void citacoesArtigos(Digrafo D) {
+        AlgoritmoTopArtigos topArtigos = new AlgoritmoTopArtigos(D);
+        int[] qtdCitacoesArtigos =  topArtigos.citacoesArtigos(D);
+        for(int x = 0; x < D.V(); x++){
             System.out.printf("%d: %d \n", x, qtdCitacoesArtigos[x]);
         }
     }
 
-    private static void autorArtigo(Digrafo G) {
-        AlgoritmoTopAutores topAutores = new AlgoritmoTopAutores(G);
+    private static void autorArtigo(Digrafo D) {
+        AlgoritmoTopAutores topAutores = new AlgoritmoTopAutores(D);
         
-        int[]qtdArtigoAutor =  topAutores.qtdArtigosAutores(G);
+        int[]qtdArtigoAutor =  topAutores.qtdArtigosAutores(D);
         for(int x = 0; x < qtdArtigoAutor.length; x++){
             if(qtdArtigoAutor[x] > 0){
                 System.out.printf("%d: %d \n", x, qtdArtigoAutor[x]);
