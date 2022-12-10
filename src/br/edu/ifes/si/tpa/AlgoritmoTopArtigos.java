@@ -13,8 +13,8 @@ public class AlgoritmoTopArtigos {
     private int[] qtdCitacoesArtigo;
     public AlgoritmoTopArtigos(Digrafo D){
         qtdCitacoesArtigo = new int[D.V()];
-        
     }
+    
     public int[] citacoesArtigos(Digrafo D){
         for(int x = 0 ; x < D.V() ; x++){
             for(Aresta a : D.arestas()){

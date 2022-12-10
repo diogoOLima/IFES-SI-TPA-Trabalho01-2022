@@ -8,14 +8,14 @@ public class AlgoritmoTodosCaminhos {
     private int numeroDeCaminhos;       // número de caminhos simples
 
     // mostra todos os caminhos simples de vo (vértice origem) para vd (vértice destino) - usando DFS
-    public AlgoritmoTodosCaminhos(Digrafo G, int vo, int vd) {
-        noCaminho = new boolean[G.V()];
+    public AlgoritmoTodosCaminhos(Digrafo D, int vo, int vd) {
+        noCaminho = new boolean[D.V()];
         caminho   = new Pilha<Integer>();
-        dfs(G, vo, vd);
+        dfs(D, vo, vd);
     }
 
     // usando a ideia de exploração do método DFS
-    private void dfs(Digrafo G, int v, int vd) {
+    private void dfs(Digrafo D, int v, int vd) {
 
         // adiciona v ao caminho atual
         caminho.empilha(v);
@@ -29,10 +29,10 @@ public class AlgoritmoTodosCaminhos {
 
         // considerar todos os vizinhos que continuariam o caminho
         else {
-            for (Aresta a : G.adj(v)) {
+            for (Aresta a : D.adj(v)) {
                 int x = a.getV2();
                 if (!noCaminho[x])
-                    dfs(G, x, vd);
+                    dfs(D, x, vd);
             }
         }
 
@@ -61,25 +61,14 @@ public class AlgoritmoTodosCaminhos {
 
     // Testa a classe AlgoritmoTodosCaminhos
     public static void main(String[] args) {
-//        Grafo G = new Grafo(7);
         Scanner ler = new Scanner(System.in);
-        Digrafo G = new Digrafo(new In("./Digrafo1.txt"));
-//        G.addAresta(new Aresta(0, 1));
-//        G.addAresta(new Aresta(0, 2));
-//        G.addAresta(new Aresta(2, 3));
-//        G.addAresta(new Aresta(3, 4));
-//        G.addAresta(new Aresta(2, 5));
-//        G.addAresta(new Aresta(1, 5));
-//        G.addAresta(new Aresta(5, 4));
-//        G.addAresta(new Aresta(3, 6));
-//        G.addAresta(new Aresta(4, 6));
-//        System.out.println(G);
+        Digrafo D = new Digrafo(new In("./Digrafo1.txt"));
         int origem, destino;
         System.out.println("Digite o ID do artigo origem: ");
         origem = ler.nextInt();
         System.out.println("Digite o ID do artigo destino: ");
         destino = ler.nextInt();
-        AlgoritmoTodosCaminhos todosCaminhos1 = new AlgoritmoTodosCaminhos(G, origem, destino);
+        AlgoritmoTodosCaminhos todosCaminhos1 = new AlgoritmoTodosCaminhos(D, origem, destino);
         System.out.println("# caminhos = " + todosCaminhos1.numeroDeCaminhos());
     }
 

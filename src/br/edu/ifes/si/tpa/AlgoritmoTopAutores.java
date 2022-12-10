@@ -26,8 +26,7 @@ public class AlgoritmoTopAutores {
         for(int x = 0 ; x < D.V() ; x++){
             for(Aresta a : D.arestas()){
                 if(a.getV2() == x){
-                    int autorArtigo = artigoAutor.get(a.getV2());
-                    qtdArtigoAutor[autorArtigo]++;
+                    qtdArtigoAutor[x]++;
                 }
             }
         }

@@ -46,29 +46,29 @@ public class AlgoritmoMenorCaminho {
      * @param G o dígrafo
      * @param vo o vértice origem
      */
-    public AlgoritmoMenorCaminho(Digrafo G, int vo) {
-        marcado = new boolean[G.V()];
-        distanciaPara = new int[G.V()];
-        arestaPara = new int[G.V()];
-        for (int v = 0; v < G.V(); v++) {
+    public AlgoritmoMenorCaminho(Digrafo D, int vo) {
+        marcado = new boolean[D.V()];
+        distanciaPara = new int[D.V()];
+        arestaPara = new int[D.V()];
+        for (int v = 0; v < D.V(); v++) {
             distanciaPara[v] = INFINITY;
         }
-        bfs(G, vo);
+        bfs(D, vo);
     }
 
     /**
      * Método algoritmoBFS para um vértice origem
-     * @param G o dígrafo
+     * @param D o dígrafo
      * @param vo o vértice origem
      */
-    private void bfs(Digrafo G, int vo) {
+    private void bfs(Digrafo D, int vo) {
         Fila<Integer> f = new Fila<Integer>();
         f.enfileira(vo);
         marcado[vo] = true;
         distanciaPara[vo] = 0;
         while (!f.isEmpty()) {
             int v = f.desenfileira();
-            for (Aresta a : G.adj(v)) {
+            for (Aresta a : D.adj(v)) {
                 int x = a.getV2();
                 if (!marcado[x]) {
                     arestaPara[x] = v;
@@ -121,14 +121,14 @@ public class AlgoritmoMenorCaminho {
      */
     public static void main(String[] args) {
         Scanner ler = new Scanner(System.in);
-        Digrafo G = new Digrafo( new In("./Digrafo1.txt"));
+        Digrafo D = new Digrafo( new In("./Digrafo1.txt"));
 
         int origem, destino;
         System.out.println("Digite o ID do artigo origem: ");
         origem = ler.nextInt();
         System.out.println("Digite o ID do artigo destino: ");
         destino = ler.nextInt();
-        AlgoritmoMenorCaminho algoritmoBFS = new AlgoritmoMenorCaminho(G, origem);
+        AlgoritmoMenorCaminho algoritmoBFS = new AlgoritmoMenorCaminho(D, origem);
 
         if (algoritmoBFS.temCaminhoPara(destino)) {
             System.out.printf("%d para %d (%d):  ", origem, destino, algoritmoBFS.distanciaPara(destino));

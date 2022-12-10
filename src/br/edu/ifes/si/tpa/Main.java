@@ -23,6 +23,7 @@ public class Main {
             System.out.println("1) Encontrar o menor caminho entre dois vértices");
             System.out.println("2) Listar todos os caminhos entre dois vértices");
             System.out.println("3) Número de citações de cada artigo");
+            System.out.println("4) Número de citações de cada autor");
             opcaoMenu = ler.nextInt();
             switch (opcaoMenu){
                 case 1:
@@ -37,7 +38,8 @@ public class Main {
                 case 4:
                     autorArtigo(D);
                     break;
-                    
+                default:
+                    System.out.println("Opção inválida");        
             }
             System.out.println("Deseja continuar?(1-Sim | 0-Não)");
             if(ler.nextInt() == 1){
